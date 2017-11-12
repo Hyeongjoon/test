@@ -2,6 +2,7 @@ var express = require('express');
 var lotto_num = require('../helper/lotto_num');
 var emailHelper = require('../helper/makeEmail');
 var async = require('async');
+var numlogDAO = require('../model/num_logDAO');
 
 var router = express.Router();
 
@@ -11,7 +12,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/lotto' , function(req, res, next){
-	res.json({result : lotto_num.getLottoNum()});
+	var arr = lotto_num.getLottoNum();
+	async.parallel([function(callback){
+		numlogDAO.add_log(arr , callback);
+	}],function(err, result){
+		res.json({result : arr});
+	});
 });
 
 router.post('/send_email' , function(req, res, next){

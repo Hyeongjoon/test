@@ -18,7 +18,7 @@ var emailConfig = {
 
 var mailOption = {
 		from : '',
-		to : 'wkdwns00@gmail.com',
+		to : 'anicc@naver.com',
 		subject : '',
 		html : ''
 }
@@ -26,7 +26,7 @@ var mailOption = {
 
 exports.makeEmail = function(inform , callback){
 	mailOption.from = '"' + inform.name;
-	mailOption.subject = inform.subject;
+	mailOption.subject = '[ARI] ' +inform.subject;
 	mailOption.html = inform.content + '<br \><br \> - '+ inform.name+ '님 '+ inform.email+'에서 온 메일'
 
 	emailTransport.sendMail(mailOption , function(err , info){
