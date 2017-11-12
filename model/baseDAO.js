@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var config = require('../helper/config.js');
+var config = require('../helper/config2.js');
 
 
 var connection = mysql.createConnection({
