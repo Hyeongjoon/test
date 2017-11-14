@@ -103,7 +103,7 @@
     <section class="about" id="about">
       <div class="container text-center">
         <h2>
-			현재까지 당첨 현황(미구현)
+			현재까지 당첨 현황
         </h2>
 
         <p>
@@ -113,25 +113,25 @@
         <div class="row stats-row">
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" id="1234" data-toggle="counter-up">232</span> 5등
+              <span class="stats-no" id="1234" data-toggle="counter-up"><%=all['5th']%></span> 5등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">79</span> 4등
+              <span class="stats-no" data-toggle="counter-up"><%=all['4th']%></span> 4등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">2</span> 3등
+              <span class="stats-no" data-toggle="counter-up"><%=all['3rd']%></span> 3등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">0</span> 2등
+              <span class="stats-no" data-toggle="counter-up"><%=all['2nd']%></span> 2등
             </div>
           </div>
         </div>
@@ -142,41 +142,41 @@
 	<section class="about" id="last_week">
       <div class="container text-center">
         <h2>
-			지난주 당첨 현황(미구현)
+			지난주 당첨 현황
         </h2>
 
         <p>
-			현재까지 저희 생성기를 이용해 당첨을 한 인원 수 입니다.
+			지난주 당첨 현황 및 판매량 입니다.
         </p>
 
         <div class="row stats-row">
           <div class="stats-col text-center col-md-2 col-sm-6 offset-md-1">
             <div class="circle">
-              <span class="stats-no" id="1234" data-toggle="counter-up">232</span> 5등
+              <span class="stats-no" id="1234" data-toggle="counter-up"><%=last_week['5th']%></span> 5등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-2 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">79</span> 4등
+              <span class="stats-no" data-toggle="counter-up"><%=last_week['4th']%></span> 4등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-2 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">2</span> 3등
+              <span class="stats-no" data-toggle="counter-up"><%=last_week['3rd']%></span> 3등
             </div>
           </div>
 
           <div class="stats-col text-center col-md-2 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">0</span> 2등
+              <span class="stats-no" data-toggle="counter-up"><%=last_week['2nd']%></span> 2등
             </div>
           </div>
           
           <div class="stats-col text-center col-md-2 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">0</span> 2등
+              <span class="stats-no" data-toggle="counter-up"><%=last_week['total_num']%></span> 판매량
             </div>
           </div>
         </div>

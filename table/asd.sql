@@ -130,6 +130,7 @@ DELIMITER ;
     
         
 SET foreign_key_checks = 1;
+set sql_safe_updates=0;
 
 insert into current_draw_no values(1 , 781); # 리셋할때 셋팅 해놓을것
 insert into all_history values(0,0,0,0,0);

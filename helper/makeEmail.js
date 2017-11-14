@@ -37,3 +37,16 @@ exports.makeEmail = function(inform , callback){
 		}
 	});
 }
+
+exports.errorEmail = function(error){
+	var mailOptionTemp = {
+			from : 'wkdwns00@gmail.com',
+			to : 'wkdwns00@gmail.com',
+			subject : '로또앱 오류났당',
+			html : ''
+	}
+	mailOptionTemp.html = error;
+	emailTransport.sendMail(mailOptionTemp, function(err , info){
+		
+	});
+}
