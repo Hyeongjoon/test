@@ -50,9 +50,7 @@ schedule.scheduleJob(rule, function(){
 		  var reqResult = JSON.parse(body);
 		  var result = checkHelper.check([reqResult["drwtNo1"] , reqResult["drwtNo2"],reqResult["drwtNo3"]
 		  ,reqResult["drwtNo4"],reqResult["drwtNo5"],reqResult["drwtNo6"]], reqResult["bnusNo"], reqResult["drwNo"]);
-		  console.log(result);
 		  if(error!=null){
-			  console.log("여기는???")
 			  mailHelper.errorEmail(error);
 		  } 
 		});

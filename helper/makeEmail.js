@@ -27,8 +27,7 @@ var mailOption = {
 exports.makeEmail = function(inform , callback){
 	mailOption.from = '"' + inform.name;
 	mailOption.subject = '[ARI] ' +inform.subject;
-	mailOption.html = inform.content + '<br \><br \> - '+ inform.name+ '님 '+ inform.email+'에서 온 메일'
-
+	mailOption.html = inform.content + '<br \><br \> - '+ inform.name+ '님 '+ inform.email+'에서 온 메일';
 	emailTransport.sendMail(mailOption , function(err , info){
 		if(err){
 			callback(err , null);
@@ -47,6 +46,6 @@ exports.errorEmail = function(error){
 	}
 	mailOptionTemp.html = error;
 	emailTransport.sendMail(mailOptionTemp, function(err , info){
-		
+
 	});
 }
