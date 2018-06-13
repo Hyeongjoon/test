@@ -1,0 +1,304 @@
+@import "../variables";
+
+/*! Color Scheme 2 */
+a {
+	color: $primary-color-2;
+}
+
+a:hover, a:focus, a:active, a:hover:active { 
+	color: $primary-color-darken-2;
+}
+
+input {
+  border: 2px solid $primary-color-2;
+}
+
+.color {
+	background-color: $primary-color-2;
+}
+
+.text-notice-line {
+	&:after {
+		background: $second-color-2;
+	}
+}
+
+.text-notice {
+	color: $second-color-2;
+}
+
+.list {
+	li {
+		i {
+			color: $second-color-2;
+		}
+  }
+}
+
+#page-preloader {
+	.path {
+		stroke: $primary-color-2;
+	}
+}
+
+.action-button-nav {
+	@include button-colors ($second-color-2,$white,$second-color-2,$white);
+
+	&:before {
+		background: $second-color-darken-2;
+	}
+}
+
+.action-button-cta {
+	@include button-colors ($second-color-2,$white,$second-color-2,$white);
+
+	&:before {
+		background: $second-color-darken-2;
+	}
+}
+
+.hero-button, .buy-button, .order-button, .submit-button {
+	@include button-colors ($primary-color-2,$white,$primary-color-2,$white);
+
+	&:before {
+		background: $primary-color-darken-2;
+	}
+}
+
+.header-container {
+	.header-content {
+		background-color: $primary-color-2;
+
+		.scroll-link {
+			a {
+				&:after {
+					background: $primary-color-darken-2;
+				}
+			}
+		}
+	}
+}
+
+.logo-promo-text {
+	&:before {
+		background: $primary-color-2;
+	}
+}
+
+.navbar-default {
+	.navbar-nav > li > a {
+		&:before {
+			background: $second-color-2;
+		}
+	}
+
+	.navbar-nav > li.current > a {
+		&:before {
+			background: $second-color-2;
+		}	
+	}
+}
+
+.navbar-fix {
+	.logo-promo-text {
+		&:before {
+			background: $second-color-2;
+		}
+	}
+}
+
+.nav-bg {
+	background-color: $primary-color-2;
+}
+
+.navbar-page-top {
+	background-color: $primary-color-2 !important;
+
+	.logo-promo-text {
+		&:before {
+			background: $second-color-2;
+		}
+	}
+}
+
+.score-graph {
+	background-color: $primary-color-2;
+}
+
+.tech-block {
+	i {
+		color: $second-color-2;
+	}
+}
+
+.features {
+	i {
+		color: $primary-color-2;
+	}
+}
+
+.gallery-img {
+	.slider {
+		.flex-direction-nav {
+			a {
+				&:before {
+					color: $second-color-2;
+				}
+			}
+		}
+	}
+}
+
+.product {
+	p {
+		color: $primary-color-lighten-2;
+	}
+
+	.product-block {
+		.product-bg {
+			background-color: $primary-color-2;
+		}
+
+		.product-content {
+			.version-bg {
+				color: $primary-color-2;
+			}
+		}
+
+		.sale {
+			&:before {
+				background-color: $second-color-2;
+			}
+		}
+
+		.sale-price {
+			color: $second-color-2;
+		}
+	}	
+}
+
+.product-l2 {
+	.product-l2-bg {
+		.bg-img {
+			background-color: $primary-color-2;
+		}
+	}
+
+	.product-l2-content {
+		.product-info {
+			.sale {
+				&:before {
+					background-color: $second-color-2;
+				}
+			}
+
+			.sale-price {
+				color: $second-color-2;
+			}
+		}
+	}
+}
+
+.order {
+	.order-form-bg {
+		background-color: $primary-color-2;
+	}
+
+	.order-form-header {
+		.order-desc {
+			.version {
+				color: $primary-color-lighten-2;
+			}
+		}
+	}
+
+	.order-form-content {
+		select {
+			border: 2px solid $primary-color-2;
+		}
+	}
+
+	.order-send {
+		background-color: $primary-color-2;
+	}
+}
+
+.video {
+	.play {
+		a, i {
+			color: $primary-color-2;
+
+			&:hover, &:active, &:focus {
+				color: $primary-color-darken-2;
+			}
+		}
+	}
+}
+
+.newsletter {
+	.newsletter-notice {
+		color: $primary-color-lighten-2;
+	}
+}
+
+.nf-send, .nf-success {
+	background-color: $primary-color-2;
+}
+
+.reviews {
+	.review {
+		&:before {
+			color: $primary-color-2;
+		}
+	}
+}
+
+.footer {
+	.footer-social-icons {
+		li {
+			a {
+				&:hover, &:active, &:focus {
+					color: $primary-color-darken-2;
+				}
+			}
+		}
+	}
+
+	.footer-bottom-links {
+		ul {
+			li {
+				color: $primary-color-2;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.logo-promo-text {
+		&:before {
+			background-color: $second-color-2;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.header-container .header-content .scroll-link a {
+		color: $primary-color-2;
+
+		&:before {
+			background-color: $primary-color-2;
+		}
+	}
+}
+
+@media (max-width: 510px) {
+	.order {
+		.order-form-header {
+			.order-desc {
+				.version {
+					color: $primary-color-2;
+				}
+			}
+		}
+	}
+}

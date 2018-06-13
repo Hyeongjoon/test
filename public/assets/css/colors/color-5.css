@@ -1,0 +1,227 @@
+/*! Color Scheme 5 */
+a {
+  color: #767bb9;
+}
+
+a:hover, a:focus, a:active, a:hover:active {
+  color: #878bc2;
+}
+
+input {
+  border: 2px solid #444985;
+}
+
+.color {
+  background-color: #444985;
+}
+
+.text-notice-line:after {
+  background: #fc5d7b;
+}
+
+.text-notice {
+  color: #fc5d7b;
+}
+
+.list li i {
+  color: #fc5d7b;
+}
+
+#page-preloader .path {
+  stroke: #444985;
+}
+
+.action-button-nav {
+  color: #ffffff;
+  background-color: #fc5d7b;
+}
+
+.action-button-nav:hover {
+  color: #ffffff;
+  background-color: #fc5d7b;
+}
+
+.action-button-nav:before {
+  background: #fc4467;
+}
+
+.action-button-cta {
+  color: #ffffff;
+  background-color: #fc5d7b;
+}
+
+.action-button-cta:hover {
+  color: #ffffff;
+  background-color: #fc5d7b;
+}
+
+.action-button-cta:before {
+  background: #fc4467;
+}
+
+.hero-button, .buy-button, .order-button, .submit-button {
+  color: #ffffff;
+  background-color: #444985;
+}
+
+.hero-button:hover, .buy-button:hover, .order-button:hover, .submit-button:hover {
+  color: #ffffff;
+  background-color: #444985;
+}
+
+.hero-button:before, .buy-button:before, .order-button:before, .submit-button:before {
+  background: #3b4074;
+}
+
+.header-container .header-content {
+  background-color: #444985;
+}
+
+.header-container .header-content .scroll-link a:after {
+  background: #767bb9;
+}
+
+.logo-promo-text:before {
+  background: #444985;
+}
+
+.navbar-default .navbar-nav > li > a:before {
+  background: #fc5d7b;
+}
+
+.navbar-default .navbar-nav > li.current > a {
+  color: #767bb9;
+}
+
+.navbar-default .navbar-nav > li.current > a:before {
+  background: #fc5d7b;
+}
+
+.navbar-fix .logo-promo-text:before {
+  background: #fc5d7b;
+}
+
+.nav-bg {
+  background-color: #444985;
+}
+
+.navbar-page-top {
+  background-color: #444985 !important;
+}
+
+.navbar-page-top .logo-promo-text:before {
+  background: #fc5d7b;
+}
+
+.score-graph {
+  background-color: #444985;
+}
+
+.tech-block i {
+  color: #fc5d7b;
+}
+
+.features i {
+  color: #fc5d7b;
+}
+
+.gallery-img .slider .flex-direction-nav a:before {
+  color: #fc5d7b;
+}
+
+.product p {
+  color: #878bc2;
+}
+
+.product .product-block .product-bg {
+  background-color: #444985;
+}
+
+.product .product-block .product-content .version-bg {
+  color: #878bc2;
+}
+
+.product .product-block .sale:before {
+  background-color: #fc5d7b;
+}
+
+.product .product-block .sale-price {
+  color: #fc5d7b;
+}
+
+.product-l2 .product-l2-bg .bg-img {
+  background-color: #444985;
+}
+
+.product-l2 .product-l2-content .product-info .sale:before {
+  background-color: #fc5d7b;
+}
+
+.product-l2 .product-l2-content .product-info .sale-price {
+  color: #fc5d7b;
+}
+
+.order .order-form-bg {
+  background-color: #444985;
+}
+
+.order .order-form-header .order-desc .version {
+  color: #878bc2;
+}
+
+.order .order-form-content select {
+  border: 2px solid #444985;
+}
+
+.order .order-send {
+  background-color: #444985;
+}
+
+.video .play a, .video .play i {
+  color: #fc5d7b;
+}
+
+.video .play a:hover, .video .play a:active, .video .play a:focus, .video .play i:hover, .video .play i:active, .video .play i:focus {
+  color: #fc4467;
+}
+
+.newsletter .newsletter-notice {
+  color: #878bc2;
+}
+
+.nf-send, .nf-success {
+  background-color: #444985;
+}
+
+.reviews .review:before {
+  color: #444985;
+}
+
+.footer .footer-social-icons li a:hover, .footer .footer-social-icons li a:active, .footer .footer-social-icons li a:focus {
+  color: #878bc2;
+}
+
+.footer .footer-bottom-links ul li {
+  color: #767bb9;
+}
+
+@media (max-width: 992px) {
+  .logo-promo-text:before {
+    background-color: #fc5d7b;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-container .header-content .scroll-link a {
+    color: #444985;
+  }
+  .header-container .header-content .scroll-link a:before {
+    background-color: #444985;
+  }
+}
+
+@media (max-width: 510px) {
+  .order .order-form-header .order-desc .version {
+    color: #444985;
+  }
+}

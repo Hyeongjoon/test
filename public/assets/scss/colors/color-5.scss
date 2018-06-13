@@ -1,0 +1,306 @@
+@import "../variables";
+
+/*! Color Scheme 5 */
+a {
+	color: $primary-color-lighten-link-5;
+}
+
+a:hover, a:focus, a:active, a:hover:active { 
+	color: $primary-color-lighten-5;
+}
+
+input {
+  border: 2px solid $primary-color-5;
+}
+
+.color {
+	background-color: $primary-color-5;
+}
+
+.text-notice-line {
+	&:after {
+		background: $second-color-5;
+	}
+}
+
+.text-notice {
+	color: $second-color-5;
+}
+
+.list {
+	li {
+		i {
+			color: $second-color-5;
+		}
+  }
+}
+
+#page-preloader {
+	.path {
+		stroke: $primary-color-5;
+	}
+}
+
+.action-button-nav {
+	@include button-colors ($second-color-5,$white,$second-color-5,$white);
+
+	&:before {
+		background: $second-color-darken-5;
+	}
+}
+
+.action-button-cta {
+	@include button-colors ($second-color-5,$white,$second-color-5,$white);
+
+	&:before {
+		background: $second-color-darken-5;
+	}
+}
+
+.hero-button, .buy-button, .order-button, .submit-button {
+	@include button-colors ($primary-color-5,$white,$primary-color-5,$white);
+
+	&:before {
+		background: $primary-color-darken-5;
+	}
+}
+
+.header-container {
+	.header-content {
+		background-color: $primary-color-5;
+
+		.scroll-link {
+			a {
+				&:after {
+					background: $primary-color-lighten-link-5;
+				}
+			}
+		}
+	}
+}
+
+.logo-promo-text {
+	&:before {
+		background: $primary-color-5;
+	}
+}
+
+.navbar-default {
+	.navbar-nav > li > a {
+		&:before {
+			background: $second-color-5;
+		}
+	}
+
+	.navbar-nav > li.current > a {
+		color: $primary-color-lighten-link-5;
+
+		&:before {
+			background: $second-color-5;
+		}	
+	}
+}
+
+.navbar-fix {
+	.logo-promo-text {
+		&:before {
+			background: $second-color-5;
+		}
+	}
+}
+
+.nav-bg {
+	background-color: $primary-color-5;
+}
+
+.navbar-page-top {
+	background-color: $primary-color-5 !important;
+
+	.logo-promo-text {
+		&:before {
+			background: $second-color-5;
+		}
+	}
+}
+
+.score-graph {
+	background-color: $primary-color-5;
+}
+
+.tech-block {
+	i {
+		color: $second-color-5;
+	}
+}
+
+.features {
+	i {
+		color: $second-color-5;
+	}
+}
+
+.gallery-img {
+	.slider {
+		.flex-direction-nav {
+			a {
+				&:before {
+					color: $second-color-5;
+				}
+			}
+		}
+	}
+}
+
+.product {
+	p {
+		color: $primary-color-lighten-5;
+	}
+
+	.product-block {
+		.product-bg {
+			background-color: $primary-color-5;
+		}
+
+		.product-content {
+			.version-bg {
+				color: $primary-color-lighten-5;
+			}
+		}
+
+		.sale {
+			&:before {
+				background-color: $second-color-5;
+			}
+		}
+
+		.sale-price {
+			color: $second-color-5;
+		}
+	}	
+}
+
+.product-l2 {
+	.product-l2-bg {
+		.bg-img {
+			background-color: $primary-color-5;
+		}
+	}
+
+	.product-l2-content {
+		.product-info {
+			.sale {
+				&:before {
+					background-color: $second-color-5;
+				}
+			}
+
+			.sale-price {
+				color: $second-color-5;
+			}
+		}
+	}
+}
+
+.order {
+	.order-form-bg {
+		background-color: $primary-color-5;
+	}
+
+	.order-form-header {
+		.order-desc {
+			.version {
+				color: $primary-color-lighten-5;
+			}
+		}
+	}
+
+	.order-form-content {
+		select {
+			border: 2px solid $primary-color-5;
+		}
+	}
+
+	.order-send {
+		background-color: $primary-color-5;
+	}
+}
+
+.video {
+	.play {
+		a, i {
+			color: $second-color-5;
+
+			&:hover, &:active, &:focus {
+				color: $second-color-darken-5;
+			}
+		}
+	}
+}
+
+.newsletter {
+	.newsletter-notice {
+		color: $primary-color-lighten-5;
+	}
+}
+
+.nf-send, .nf-success {
+	background-color: $primary-color-5;
+}
+
+.reviews {
+	.review {
+		&:before {
+			color: $primary-color-5;
+		}
+	}
+}
+
+.footer {
+	.footer-social-icons {
+		li {
+			a {
+				&:hover, &:active, &:focus {
+					color: $primary-color-lighten-5;
+				}
+			}
+		}
+	}
+
+	.footer-bottom-links {
+		ul {
+			li {
+				color: $primary-color-lighten-link-5;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.logo-promo-text {
+		&:before {
+			background-color: $second-color-5;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.header-container .header-content .scroll-link a {
+		color: $primary-color-5;
+
+		&:before {
+			background-color: $primary-color-5;
+		}
+	}
+}
+
+@media (max-width: 510px) {
+	.order {
+		.order-form-header {
+			.order-desc {
+				.version {
+					color: $primary-color-5;
+				}
+			}
+		}
+	}
+}

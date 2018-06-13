@@ -1,0 +1,73 @@
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-style: inherit;
+}
+
+h1, .h1 {
+	@include type-setting(6);
+	margin: 0 0 $base-line-height 0;
+	font-weight: 700;
+}
+
+h2, .h2 {
+	@include type-setting(4);
+	margin: 0 0 $base-line-height 0;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+h3, .h3 {
+	@include type-setting(1);
+	margin: 0 0 0 0;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+h4, .h4 {
+	@include type-setting(1);
+	margin: $base-line-height 0;
+	font-weight: 700;
+}
+
+h5, .h5 { 
+	@include type-setting(1);
+	margin: $base-line-height 0;
+}
+
+h6, .h6 {
+	@include type-setting(0);
+	margin: $base-line-height 0 0 0;
+}
+
+p {
+	@include type-setting(0);
+}
+
+p, ul, ol, pre, table, blockquote {
+  margin-top: 0;
+  margin-bottom: $base-line-height;
+}
+
+ul ul, ol ol, ul ol, ol ul{
+	margin-left: $base-line-height;
+}
+
+li {
+	list-style: none;
+}
+
+a { 
+	cursor: pointer;
+}
+
+a:hover, a:focus, a:active, a:hover:active { 
+	text-decoration: none;
+}
+
+blockquote { }
+
+@media (max-width: 992px) {
+	html {
+		font-size: 90%;
+	}
+}

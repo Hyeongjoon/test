@@ -1,0 +1,315 @@
+@import "../variables";
+
+/*! Color Scheme 6 */
+a {
+	color: $second-color-6;
+}
+
+a:hover, a:focus, a:active, a:hover:active { 
+	color: $second-color-darken-6;
+}
+
+input {
+  border: 2px solid $primary-color-6;
+}
+
+.color {
+	background-color: $primary-color-6;
+}
+
+.text-notice-line {
+	&:after {
+		background: $second-color-6;
+	}
+}
+
+.text-notice {
+	color: $second-color-6;
+}
+
+.list {
+	li {
+		i {
+			color: $second-color-6;
+		}
+  }
+}
+
+#page-preloader {
+	.path {
+		stroke: $second-color-6;
+	}
+}
+
+.action-button-nav {
+	@include button-colors ($second-color-6,$white,$second-color-6,$white);
+
+	&:before {
+		background: $second-color-darken-6;
+	}
+}
+
+.action-button-cta {
+	@include button-colors ($second-color-6,$white,$second-color-6,$white);
+
+	&:before {
+		background: $second-color-darken-6;
+	}
+}
+
+.hero-button, .buy-button, .order-button, .submit-button {
+	@include button-colors ($second-color-6,$white,$second-color-6,$white);
+
+	&:before {
+		background: $second-color-darken-6;
+	}
+}
+
+.header-container {
+	.header-content {
+		background-color: $primary-color-6;
+
+		.scroll-link {
+			a {
+				&:after {
+					background: $primary-color-darken-6;
+				}
+			}
+		}
+	}
+}
+
+.header-form {
+	input {
+		border-top: 2px solid $second-color-6;
+		border-left: 2px solid $second-color-6;
+		border-bottom: 2px solid $second-color-6;
+	}
+}
+
+.logo-promo-text {
+	&:before {
+		background: $primary-color-6;
+	}
+}
+
+.navbar-default {
+	.navbar-nav > li > a {
+		&:before {
+			background: $second-color-6;
+		}
+	}
+
+	.navbar-nav > li.current > a {
+		&:before {
+			background: $second-color-6;
+		}	
+	}
+}
+
+.navbar-fix {
+	.logo-promo-text {
+		&:before {
+			background: $second-color-6;
+		}
+	}
+}
+
+.nav-bg {
+	background-color: $primary-color-6;
+}
+
+.navbar-page-top {
+	background-color: $primary-color-6 !important;
+
+	.logo-promo-text {
+		&:before {
+			background: $second-color-6;
+		}
+	}
+}
+
+.score-graph {
+	background-color: $second-color-6;
+}
+
+.tech-block {
+	i {
+		color: $second-color-6;
+	}
+}
+
+.features {
+	i {
+		color: $second-color-6;
+	}
+}
+
+.gallery-img {
+	.slider {
+		.flex-direction-nav {
+			a {
+				&:before {
+					color: $second-color-6;
+				}
+			}
+		}
+	}
+}
+
+.product {
+	p {
+		color: $primary-color-lighten-6;
+	}
+
+	.product-block {
+		.product-bg {
+			background-color: $primary-color-6;
+		}
+
+		.product-content {
+			.version-bg {
+				color: $primary-color-6;
+			}
+		}
+
+		.sale {
+			&:before {
+				background-color: $second-color-6;
+			}
+		}
+
+		.sale-price {
+			color: $second-color-6;
+		}
+	}	
+}
+
+.product-l2 {
+	.product-l2-bg {
+		.bg-img {
+			background-color: $primary-color-6;
+		}
+	}
+
+	.product-l2-content {
+		.product-info {
+			.sale {
+				&:before {
+					background-color: $second-color-6;
+				}
+			}
+
+			.sale-price {
+				color: $second-color-6;
+			}
+		}
+	}
+}
+
+.order {
+	.order-form-bg {
+		background-color: $primary-color-6;
+	}
+
+	.order-form-header {
+		.order-desc {
+			.version {
+				color: $primary-color-lighten-6;
+			}
+		}
+	}
+
+	.order-form-content {
+		select {
+			border: 2px solid $primary-color-6;
+		}
+	}
+
+	.order-send {
+		background-color: $primary-color-6;
+	}
+}
+
+.video {
+	.play {
+		a, i {
+			color: $second-color-6;
+
+			&:hover, &:active, &:focus {
+				color: $second-color-darken-6;
+			}
+		}
+	}
+}
+
+.newsletter {
+	input {
+	  border: 2px solid $second-color-6;
+	}
+	.newsletter-notice {
+		color: $second-color-lighten-6
+	}
+}
+
+.nf-send, .nf-success {
+	background-color: $primary-color-6;
+}
+
+.reviews {
+	.review {
+		&:before {
+			color: $primary-color-6;
+		}
+	}
+}
+
+.footer {
+	.footer-social-icons {
+		li {
+			a {
+				&:hover, &:active, &:focus {
+					color: $primary-color-darken-6;
+				}
+			}
+		}
+	}
+
+	.footer-bottom-links {
+		ul {
+			li {
+				color: $second-color-6;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.logo-promo-text {
+		&:before {
+			background-color: $second-color-6;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.header-container .header-content .scroll-link a {
+		color: $primary-color-6;
+
+		&:before {
+			background-color: $primary-color-6;
+		}
+	}
+}
+
+@media (max-width: 510px) {
+	.order {
+		.order-form-header {
+			.order-desc {
+				.version {
+					color: $primary-color-6;
+				}
+			}
+		}
+	}
+}

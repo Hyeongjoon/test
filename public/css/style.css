@@ -467,10 +467,22 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-top: 65px;
 }
 
+@media(max-width: 768px){
+	.stats-col .circle {
+		width: 130px; 
+  		height: 130px;
+	}	
+}
+@media(min-width:768px){
+	.stats-col .circle {
+		width: 160px; 
+  		height: 160px;
+	}
+}
+
 .stats-col .circle {
   display: inline-block;
-  width: 160px;
-  height: 160px;
+  
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 500;
   color: #666;
@@ -500,7 +512,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   ================================================== */
 .block {
   color: #fff;
-  height: 705px;
+  height: 1293px;
   overflow: hidden;
   padding-top: 85px;
 }
@@ -902,6 +914,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* ==================================================
   Responsive Styling
   ================================================== */
+
 @media (max-width: 61.9em) {
   section,
   .block,

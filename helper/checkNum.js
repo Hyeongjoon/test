@@ -46,6 +46,7 @@ exports.check = function(winArr , bonusNum , drawNo){
 			  }
 			  ++lastWeek[5];
 		  }
+		  console.log(lastWeek);
 		  tempDAO.updateTemp(lastWeek , callback);
 	  }], function(err , results){
 		  if(err){

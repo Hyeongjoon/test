@@ -1,0 +1,400 @@
+@charset "UTF-8";
+
+/////
+// Colors
+/////
+
+// Color Scheme 1
+$primary-color: #43bccd;
+$primary-color-darken: darken($primary-color, 5%); // hover links and hover buttons
+$primary-color-overlay: darken($primary-color, 45%); // overlay 45%
+$primary-color-lighten: lighten($primary-color, 25%); // text
+
+$second-color: #f9c80e;
+$second-color-darken: darken($second-color, 5%); // hover buttons
+
+// Color Scheme 2 
+$primary-color-2: #55acee;
+$primary-color-darken-2: darken($primary-color-2, 5%);
+$primary-color-overlay-2: darken($primary-color-2, 45%);
+$primary-color-lighten-2: lighten($primary-color-2, 25%);
+
+$second-color-2: #fab715;
+$second-color-darken-2: darken($second-color-2, 5%);
+
+// Color Scheme 3 
+$primary-color-3: #23d889;
+$primary-color-darken-3: darken($primary-color-3, 5%);
+$primary-color-overlay-3: darken($primary-color-3, 45%);
+$primary-color-lighten-3: lighten($primary-color-3, 25%);
+
+$second-color-3: #7b81fc;
+$second-color-darken-3: darken($second-color-3, 5%);
+
+// Color Scheme 4 
+$primary-color-4: #6e73fc;
+$primary-color-darken-4: darken($primary-color-4, 5%);
+$primary-color-overlay-4: darken($primary-color-4, 45%);
+$primary-color-lighten-4: lighten($primary-color-4, 25%);
+
+$second-color-4: #23d889;
+$second-color-darken-4: darken($second-color-4, 5%);
+
+// Color Scheme 5 
+$primary-color-5: #444985;
+$primary-color-darken-5: darken($primary-color-5, 5%);
+$primary-color-overlay-5: darken($primary-color-5, 45%);
+$primary-color-lighten-link-5: lighten($primary-color-5, 20%);
+$primary-color-lighten-5: lighten($primary-color-5, 25%);
+
+$second-color-5: #fc5d7b;
+$second-color-darken-5: darken($second-color-5, 5%);
+
+// Color Scheme 6 
+$primary-color-6: #c7d2d6;
+$primary-color-darken-6: darken($primary-color-6, 5%);
+$primary-color-overlay-6: darken($primary-color-6, 45%);
+$primary-color-lighten-6: lighten($primary-color-6, 25%);
+
+$second-color-6: #229edf;
+$second-color-darken-6: darken($second-color-6, 5%);
+$second-color-lighten-6: lighten($second-color-6, 25%);
+
+// Common Colors 
+$overlay: #333e50;
+$wave: rgba(168, 224, 232, 0.11);
+$bg: #f2f2f2;
+$white: #ffffff;
+$gray: #e9eced;
+$gray-2: #f9fcfd;
+$black: #222222;
+$black-lighten: lighten($black, 50%);
+$score-graph: #c7d2d6;
+$red: #cd173E;
+
+/////
+// Typography
+/////
+
+$base-font-size: 1rem;
+$base-line-height: $base-font-size * 1.5;
+
+// Define font size
+//
+// @example 
+//  font-size: type-scale(0);
+//
+// @require
+//  font-size: type-scale($level);
+$type-scale: (
+  -1: 0.8rem,
+  0: 1rem,
+  1: 1.25rem,
+  2: 1.563rem,
+  3: 1.953rem,
+  4: 2.441rem,
+  5: 3.052rem,
+  6: 3.815rem,
+  7: 7.451rem
+);
+
+@function type-scale($level) {
+  @return map-get($type-scale, $level);
+}
+
+// Define line heights
+//
+// @example 
+//  line-height: line-height(0);
+//
+// @require 
+//  line-height: line-height($level);
+$line-height: (
+  -1: $base-line-height,
+  0: $base-line-height * 1,
+  1: $base-line-height * 1, 
+  2: $base-line-height * 2,
+  3: $base-line-height * 2,
+  4: $base-line-height * 2, 
+  5: $base-line-height * 2,
+  6: $base-line-height * 2,
+  7: $base-line-height * 4
+);
+
+@function line-height($level) {
+  @return map-get($line-height, $level);
+}
+
+// Define typography vertical rhythm
+//
+// @example
+//  @include type-setting(0);
+//
+// @require
+//  @include type-setting($level);
+@mixin type-setting($level: 0) {
+  font-size: type-scale($level);
+  line-height: line-height($level);
+}
+
+/////
+// Buttons
+/////
+
+$button-padding: 0.75rem 2rem;
+
+// Define base buttons styles
+//
+// @example
+//  @include button-colors($second-color,$white,$white,$second-color);
+//
+// @arguments
+//  #color1 - bg color, 
+//  #color2 - text color,
+//  #color3 - hover bg color, 
+//  #color4 - hover text color
+//
+// @require
+//  @include button-colors($color-bg, $color-text, $color-bg-hover, $color-text-hover)
+@mixin button-colors($color-bg, $color-text, $color-bg-hover, $color-text-hover) {
+  color: $color-text;
+  background-color: $color-bg;
+
+  &:hover {
+    color: $color-text-hover;
+    background-color: $color-bg-hover;
+  }
+}
+
+/////
+// MIXINS
+//
+// @require 
+//  @include mixin-name($param);
+/////
+
+// Border radius
+//
+// @example
+//  @include border-radius(25px);
+//
+// @require
+//  @include border-radius($radius);
+@mixin border-radius($radius) {	
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+
+// Box shadow
+//
+// For > IE9
+// filter: progid:DXImageTransform.Microsoft.dropshadow(offX=5, offY=5, color=#000000);
+// filter: progid:DXImageTransform.Microsoft.shadow(direction=120, color=#000000, strength=10);
+//
+// @example
+//  @include box-shadow(5px 5px 10px #ccc);
+//
+// @arguments
+//  none | [inset? && [ <offset-x> <offset-y> <blur-radius>? <spread-radius>? <color>? ] ]
+//
+// @require
+//  @include box-shadow($params);
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+     -moz-box-shadow: $params;
+          box-shadow: $params;
+}
+
+// Background size
+//
+// @example
+//  @include background-size(cover);
+//
+// @arguments
+//  [ <length> | <percentage> | auto ]{1,2} | cover | contain
+//
+// @require
+//  @include background-size($param); 
+@mixin background-size($param) {
+  -webkit-background-size: $param;
+     -moz-background-size: $param;
+       -o-background-size: $param;
+          background-size: $param;
+}
+
+// Transition CSS property
+//
+// @example
+//  @include transition(all 1s ease-in-out 0s);
+//
+// @arguments
+//  [ none | <transition-property> ] || <transition-duration> || <transition-timing-function> || <transition-delay>
+//
+//  transition-property: none | all (default) | <css property>
+//  transition-duration: 0s (default)
+//  transition-timing-function: ease (default)|ease-in|ease-out|ease-in-out|linear|step-start|step-end|steps|cubic-bezier
+//  transition-delay: 0s (default)
+//
+// @require
+//  @include transition($params);
+@mixin transition($params) {
+  -webkit-transition: $params;
+     -moz-transition: $params;
+       -o-transition: $params;
+          transition: $params;
+}
+
+// Transition duration
+//
+// @example
+//  @include transition-duration(1s);
+//
+// @require
+//  @include transition-duration($sec);
+@mixin transition-duration($sec) {
+  -webkit-transition-duration: $sec;
+     -moz-transition-duration: $sec;
+       -o-transition-duration: $sec;
+          transition-duration: $sec;
+}
+
+// Transition Delay
+//
+// @example
+//  @include transition-delay(1s);
+//
+// @require
+//  @include transition-delay($sec);
+@mixin transition-delay($sec) {
+  -webkit-transition-delay: $sec;
+     -moz-transition-delay: $sec;
+       -o-transition-delay: $sec;
+          transition-delay: $sec;
+}
+
+// Transform property
+//
+// @example
+//  @include transform(translateX(50%));
+//
+// @arguments
+//  <transform-function> | none
+//
+//  transform-function:
+//  matrix|translate|translateX|translateY|scale|scaleX|scaleY|rotate|skew|skewX|skewY
+//  matrix3d|translate3d|translateZ|scale3d|scaleZ|rotate3d|rotateX|rotateY|rotateZ|perspective
+//
+// @require
+//  @include transform($params);
+@mixin transform($params) { 
+  -webkit-transform: $params;
+     -moz-transform: $params;
+      -ms-transform: $params;
+       -o-transform: $params; 
+          transform: $params;
+}
+
+// Transform Origin
+//
+// @example
+//  @include transform-origin(100% 0);
+//
+// @arguments
+//  <x> <y> <z>
+//
+// @require
+//  @include transform-origin($params);
+@mixin transform-origin($params) { 
+  -webkit-transform-origin: $params;
+     -moz-transform-origin: $params;
+      -ms-transform-origin: $params;
+       -o-transform-origin: $params; 
+          transform-origin: $params;
+}
+
+// Animation
+// 
+// @example
+//  @include animation(animationName 1.3s ease-in-out 0s);
+//
+// @arguments
+//  animation-name || animation-duration || animation-timing-function || animation-delay || 
+//  animation-iteration-count || animation-direction || animation-fill-mode || animation-play-state
+//
+//  animation-name: name
+//  animation-duration: 0s (default)
+//  animation-timing-function: ease|ease-in|ease-out|ease-in-out|linear|step-start|step-end|steps|cubic-bezier
+//  animation-delay: 0s (default)
+//  animation-iteration-count: value | infinite 
+//  ---
+//  animation-direction: normal (default) | alternate | reverse | alternate-reverse
+//  animation-fill-mode: none (default) | forwards | backwards | both
+//  animation-play-state: running (default) | paused
+//
+// @require
+//  @include animation($params);
+@mixin animation($params) {
+  -webkit-animation: $params;
+     -moz-animation: $params;
+       -o-animation: $params;
+          animation: $params; 
+}
+
+// Animation delay
+//
+// @example
+//  @include animation-delay(5s);
+//
+// @require
+//  @include animation-delay($sec);
+@mixin animation-delay($sec) {
+  -webkit-animation-delay: $sec;
+     -moz-animation-delay: $sec;
+       -o-animation-delay: $sec;
+          animation-delay: $sec; 
+}
+
+// Keyframes
+//
+// @require
+//  @include keyframes($name)
+//    {
+//      0% { ... }
+//      100 { ... }
+//    }
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// It controls the behavior of the highlight text and other elements on the page
+//
+// @example
+//  @include user-select(none);
+//
+// @arguments
+//  auto | none | text | all | contain (only in IE)
+//
+// @require
+//  @include user-select($param);
+@mixin user-select($param) {
+  -webkit-user-select: $param;
+     -moz-user-select: $param;
+      -ms-user-select: $param;
+          user-select: $param;
+}

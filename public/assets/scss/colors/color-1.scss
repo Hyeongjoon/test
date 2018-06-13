@@ -1,0 +1,304 @@
+@import "../variables";
+
+/*! Color Scheme 1 */
+a {
+	color: $primary-color;
+}
+
+a:hover, a:focus, a:active, a:hover:active { 
+	color: $primary-color-darken;
+}
+
+input {
+  border: 2px solid $primary-color;
+}
+
+.color {
+	background-color: $primary-color;
+}
+
+.text-notice-line {
+	&:after {
+		background: $second-color;
+	}
+}
+
+.text-notice {
+	color: $second-color;
+}
+
+.list {
+	li {
+		i {
+			color: $second-color;
+		}
+  }
+}
+
+#page-preloader {
+	.path {
+		stroke: $primary-color;
+	}
+}
+
+.action-button-nav {
+	@include button-colors ($second-color,$white,$second-color,$white);
+
+	&:before {
+		background: $second-color-darken;
+	}
+}
+
+.action-button-cta {
+	@include button-colors ($second-color,$white,$second-color,$white);
+
+	&:before {
+		background: $second-color-darken;
+	}
+}
+
+.hero-button, .buy-button, .order-button, .submit-button {
+	@include button-colors ($primary-color,$white,$primary-color,$white);
+
+	&:before {
+		background: $primary-color-darken;
+	}
+}
+
+.header-container {
+	.header-content {
+		background-color: $primary-color;
+
+		.scroll-link {
+			a {
+				&:after {
+					background: $primary-color-darken;
+				}
+			}
+		}
+	}
+}
+
+.logo-promo-text {
+	&:before {
+		background: $primary-color;
+	}
+}
+
+.navbar-default {
+	.navbar-nav > li > a {
+		&:before {
+			background: $second-color;
+		}
+	}
+
+	.navbar-nav > li.current > a {
+		&:before {
+			background: $second-color;
+		}	
+	}
+}
+
+.navbar-fix {
+	.logo-promo-text {
+		&:before {
+			background: $second-color;
+		}
+	}
+}
+
+.nav-bg {
+	background-color: $primary-color;
+}
+
+.navbar-page-top {
+	background-color: $primary-color !important;
+
+	.logo-promo-text {
+		&:before {
+			background: $second-color;
+		}
+	}
+}
+
+.score-graph {
+	background-color: $primary-color;
+}
+
+.tech-block {
+	i {
+		color: $second-color;
+	}
+}
+
+.features {
+	i {
+		color: $primary-color;
+	}
+}
+
+.gallery-img {
+	.slider {
+		.flex-direction-nav {
+			a {
+				&:before {
+					color: $second-color;
+				}
+			}
+		}
+	}
+}
+
+.product {
+	p {
+		color: $primary-color-lighten;
+	}
+
+	.product-block {
+		.product-bg {
+			background-color: $primary-color;
+		}
+
+		.product-content {
+			.version-bg {
+				color: $primary-color;
+			}
+		}
+
+		.sale {
+			&:before {
+				background-color: $second-color;
+			}
+		}
+
+		.sale-price {
+			color: $second-color;
+		}
+	}	
+}
+
+.product-l2 {
+	.product-l2-bg {
+		.bg-img {
+			background-color: $primary-color;
+		}
+	}
+
+	.product-l2-content {
+		.product-info {
+			.sale {
+				&:before {
+					background-color: $second-color;
+				}
+			}
+
+			.sale-price {
+				color: $second-color;
+			}
+		}
+	}
+}
+
+.order {
+	.order-form-bg {
+		background-color: $primary-color;
+	}
+
+	.order-form-header {
+		.order-desc {
+			.version {
+				color: $primary-color-lighten;
+			}
+		}
+	}
+
+	.order-form-content {
+		select {
+			border: 2px solid $primary-color;
+		}
+	}
+
+	.order-send {
+		background-color: $primary-color;
+	}
+}
+
+.video {
+	.play {
+		a, i {
+			color: $primary-color;
+
+			&:hover, &:active, &:focus {
+				color: $primary-color-darken;
+			}
+		}
+	}
+}
+
+.newsletter {
+	.newsletter-notice {
+		color: $primary-color-lighten;
+	}
+}
+
+.nf-send, .nf-success {
+	background-color: $primary-color;
+}
+
+.reviews {
+	.review {
+		&:before {
+			color: $primary-color;
+		}
+	}
+}
+
+.footer {
+	.footer-social-icons {
+		li {
+			a {
+				&:hover, &:active, &:focus {
+					color: $primary-color-darken;
+				}
+			}
+		}
+	}
+
+	.footer-bottom-links {
+		ul {
+			li {
+				color: $primary-color;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.logo-promo-text {
+		&:before {
+			background-color: $second-color;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.header-container .header-content .scroll-link a {
+		color: $primary-color;
+
+		&:before {
+			background-color: $primary-color;
+		}
+	}
+}
+
+@media (max-width: 510px) {
+	.order {
+		.order-form-header {
+			.order-desc {
+				.version {
+					color: $primary-color;
+				}
+			}
+		}
+	}
+}

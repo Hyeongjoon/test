@@ -35,10 +35,24 @@ create table last_week_history
         total_num smallint unsigned default 0
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
+DROP TABLE IF exists history_log;
+create table history_log
+		(id smallint unsigned auto_increment,
+        5th smallint unsigned default 0,
+        4th smallint unsigned default 0,
+        3rd smallint unsigned default 0,
+        2nd smallint unsigned default 0,
+        1st smallint unsigned default 0,
+        total_num smallint unsigned default 0,
+        draw_no smallint unsigned NOT NULL default 0,
+        draw_date datetime NOT NULL default now(),
+        primary key(`id`)
+) Engine =InnoDB DEFAULT CHARSET = utf8;
+
 DROP TABLE IF exists num_log;
 create table num_log
 		(
-        id int unsigned auto_increment NOT NULL,
+        id bigint unsigned auto_increment NOT NULL,
         no1 tinyint unsigned NOT NULL,
         no2 tinyint unsigned NOT NULL,
         no3 tinyint unsigned NOT NULL,
@@ -128,6 +142,17 @@ CREATE PROCEDURE set_draw(IN no1 tinyint unsigned,
  END //
 DELIMITER ;
     
+    	DROP TRIGGER IF EXISTS add_history_log;
+DELIMITER |
+create TRIGGER add_history_log AFTER update ON  last_week_history
+	for each row
+    BEGIN
+		insert into history_log(`5th`,`4th`,`3rd`,`2nd`,`1st`,`total_num`) values(new.5th, new.4th, new.3rd, new.2nd, new.1st, new.total_num);
+		update `history_log` set draw_no=((   
+		SELECT no from current_draw_no WHERE current_draw_no.id = 1
+		) - 1)  WHERE `id` = last_insert_id();
+	END|
+    DELIMITER ;
         
 SET foreign_key_checks = 1;
 set sql_safe_updates=0;

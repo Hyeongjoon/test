@@ -47,4 +47,13 @@ router.post('/send_email' , function(req, res, next){
 	});
 });
 
+router.get('/temp', function(req, res, next){
+	res.render('temp' , {title : 'temp'});
+});
+
+
+router.get('/temp1', function(req, res, next){
+	res.render('index-1' , {title : 'temp'});
+});
+
 module.exports = router;
