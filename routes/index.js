@@ -56,4 +56,6 @@ router.get('/temp1', function(req, res, next){
 	res.render('index-1' , {title : 'temp'});
 });
 
+
+
 module.exports = router;

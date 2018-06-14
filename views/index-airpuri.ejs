@@ -841,13 +841,16 @@
 					<button v-on:click="login()" type="button" class="button order-button" style="width:100%;" title="Order">이메일 로그인</button>
 				</div>
 				<div class="col-md-12 order-button-block">
-					<button type="button" class="button order-button" style="width:100%; background-color:#fef01b; border-color:#fef01b; color:#556677; " title="Order"><i class="xi-kakaotalk xi-x" style="padding-right:3px; "></i>카카오톡 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
+					<button type="button" v-on:click="kakaoLogin" class="button order-button" style="width:100%; background-color:#fef01b; border-color:#fef01b; color:#556677; " title="Order"><i class="xi-kakaotalk xi-x" style="padding-right:3px; "></i>카카오톡 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
 				</div>
 				<div class="col-md-12 order-button-block">
-					<button type="button" class="button order-button" style="width:100%; background-color:#3b5998; border-color:#3b5998;" title="Order"><i class="xi-facebook-official xi-x" style="padding-right:3px; "></i>페이스북 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
+					<button type="button" v-on:click="facebookLogin" class="button order-button" style="width:100%; background-color:#3b5998; border-color:#3b5998;" title="Order"><i class="xi-facebook-official xi-x" style="padding-right:3px; "></i>페이스북 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
 				</div>
 				<div class="col-md-12 order-button-block">
-					<button type="button" class="button order-button" style="width:100%; background-color:#1EC800; border-color:#1EC800;" title="Order"><i class="xi-naver-square xi-x" style="padding-right:3px; "></i>네이버 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
+					<button type="button"  class="button order-button" style="width:100%; background-color:#1EC800; border-color:#1EC800;" title="Order"><i class="xi-naver-square xi-x" style="padding-right:3px; "></i>네이버 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
+				</div>
+				<div class="col-md-12">
+					<div id="naver_id_login"></div>
 				</div>
 				<div class="col-md-12">
 					<label>{{ loginMessage }}</label>
@@ -856,11 +859,11 @@
 					<hr>
 				</div>
 				<div class="col-md-12">
-					<p class="text-left">로그인 시 <a href="/service">서비스 약관</a> 및 <a href="/individual">개인 정보 보호정책</a>약관에 동의하는 것으로 간주됩니다.</p>
+					<p class="text-left">로그인 시 <a href="/temp/service">서비스 약관</a> 및 <a href="/temp/individual">개인 정보 보호정책</a>약관에 동의하는 것으로 간주됩니다.</p>
 				</div>
 				<div class="col-md-12">
 					<a v-on:click="popupSignup($event)" style="padding-right:10px;">회원 가입</a>
-					<a>비밀번호 찾기</a>
+					<a v-on:click="findPw($event)">비밀번호 찾기</a>
 				</div>
 			</div>
 			<!-- End Order Form -->
@@ -898,7 +901,7 @@
 					<hr>
 				</div>
 				<div class="col-md-12">
-					<p>회원가입 시 <a href="/service">서비스 약관</a> 및 <a href="/individual">개인 정보 보호정책</a>약관에 동의하는 것으로 간주됩니다.</p>
+					<p>회원가입 시 <a href="/temp/service">서비스 약관</a> 및 <a href="/temp/individual">개인 정보 보호정책</a>약관에 동의하는 것으로 간주됩니다.</p>
 				</div>
 				<div class="col-md-6">
 					<button type="button" style="width:100%; margin-top:10px;" class="button action-button-cta" v-on:click="signUp">가입하기</button>
@@ -913,7 +916,35 @@
 
 	</section>
 	<!-- End Popup -->
-	
+	<!-- Start Popup -->
+	<section id="pwEmail" class="order mfp-hide">
+
+		<div class="order-form-content">
+
+			<!-- Start Order Form -->
+			<div class="order-form">
+				<div class="col-md-12">
+					<h3>비밀번호 찾기</h3>
+				</div>
+				<div class="col-md-12">
+					<input class="order-email" type="text" name="email" v-model="findEmail" placeholder="회원가입 한 이메일을 입력해 주세요">
+				</div>
+				<div class="col-md-12">
+					<label>{{ findPWMessage }}</label>
+				</div>
+				<div class="col-md-12">
+					<hr>
+				</div>
+				<div class="col-md-6">
+					<button type="button" style="width:100%; margin-top:10px;" v-on:click="sendEmail" class="button action-button-cta" >비밀번호 찾기</button>
+				</div>
+			</div>
+			<!-- End Order Form -->
+
+		</div> <!-- .order-form-content -->
+
+	</section>
+	<!-- End Popup -->
 </div>
 <!-- Include JS -->
 <script src="/assets/js/jquery.min.js"></script>
@@ -930,6 +961,10 @@
 <script src="/assets/js/init.js"></script>
 <!-- firebase script -->
 <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<!-- 카카오톡 로그인 API -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- 네이버 로그인 API -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script>
   // Initialize Firebase
   // TODO: Replace with your project's customized code snippet
@@ -939,6 +974,13 @@
     projectId: "airpuri-1c6b7"
   };
   firebase.initializeApp(config);
+	var naver_id_login = new naver_id_login("V6wZ56EY5aj3huwFWJCw",	"http://www.lottofreenum.com/temp/auth");
+	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 2,40);
+  	naver_id_login.setDomain("http://www.lottofreenum.com");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
 </script>
 <!-- vue.js 부분 -->
 <script type="text/javascript">
@@ -953,7 +995,9 @@ new Vue({
 		signUpPwConfirmInput:'',
 		signUpNicknameInput:'',
 		signUpMessage:'',
-		loginMessage:''
+		loginMessage:'',
+		findPWMessage :'',
+		findEmail:''
 	},
 	methods:{
 		showModal: function(){
@@ -973,6 +1017,55 @@ new Vue({
 			} else{
 				return true;
 			}
+		},
+		facebookLogin:function(){
+			const vm = this;
+			var provider = new firebase.auth.FacebookAuthProvider();
+			provider.setCustomParameters({
+				  'display': 'popup'
+			});
+			firebase.auth().signInWithPopup(provider).then(function(result) {
+				vm.user = result.user;
+				$.magnificPopup.close();
+			}).catch(function(error) {
+    			if(error.code =='auth/account-exists-with-different-credential'){
+    				vm.loginMessage='이미 다른 서비스로 이용중인 이메일 입니다.';
+    			} else{
+    				vm.loginMessage='로그인에 실패 했습니다. 다시 시도해 주세요';
+    			}
+			});
+		},
+		kakaoLogin:function(){
+			const vm = this;
+			Kakao.Auth.login({
+		        success: function(authObj) {
+		                $.post("/temp/kakao_login" ,{access_token : authObj['access_token']} ,function(result){
+		    				if(result['result']=='duplicate'){
+		    					vm.loginMessage='이미 가입된 이메일 입니다.';
+		    				}else {
+		    					firebase.auth().signInWithCustomToken(result['token']).catch(function(error) {
+		    						vm.loginMessage='내부 서버 오류입니다. 잠시후에 시도해 주세요';
+		    						}).then(function(){
+		    							$.magnificPopup.close();
+		    						});
+		    				}
+		    			}).fail(function(message){
+		    				if(!message){
+		    					vm.loginMessage=message['message'];	
+		    				} else{
+		    					vm.loginMessage='내부 서버 오류입니다. 잠시후에 시도해 주세요';
+		    				}
+		    			});
+		                Kakao.Auth.logout();
+		        },
+		        fail: function(err) {
+		        	vm.loginMessage='이메일이나 비밀번호가 틀렸습니다.';
+		        },
+		        throughTalk: false
+		      });
+		},
+		naverLogin:function(){
+				
 		},
 		logout:function(){
 			this.user = null;
@@ -996,6 +1089,44 @@ new Vue({
 				    	vm.loginPwInput='';
 				    	vm.loginMessage='';
 				    }
+			    }
+			});
+		},
+		sendEmail:function(){
+			const vm  = this;
+			var emailRegExp = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+			var email = this.findEmail.trim();
+			if(!emailRegExp.test(email)){
+				this.findPWMessage = '올바른 이메일을 적어주세요';
+			}else{
+				firebase.auth().sendPasswordResetEmail(email).then(function() {
+					$.magnificPopup.close();
+					alert("비밀번호 찾게 메일이 발송되었습니다.")
+					}).catch(function(error) {
+						if(error.code='auth/user-not-found'){
+							vm.findPWMessage = '해당 이메일로 가입한 회원이 없습니다.';							
+						} else{
+							vm.findPWMessage = '내부 서버 오류입니다 .잠시후에 시도해 주세요';
+						}
+					});
+			}
+		},
+		findPw:function(e){
+			const vm = this;
+			$.magnificPopup.close();
+			e.stopPropagation();  //이거 있어야 새창으로 리뉴얼 됨
+			$.magnificPopup.open({
+				items:{
+					src:'#pwEmail'
+				},
+				type:'inline',
+			    midClick: true,
+			    mainClass: 'mfp-fade',
+			    callbacks:{
+			    	close:function(){
+						vm.findEmail = '';
+						findPWMessage='';
+			    	}
 			    }
 			});
 		},
@@ -1073,6 +1204,7 @@ new Vue({
 		}
 	},
 	beforeCreate: function(){
+		Kakao.init('8cfff2d2abaa58507a1576a56585356c');
 		firebase.auth().onAuthStateChanged((user) => {
 	        if (user) {
 	          this.user = user
