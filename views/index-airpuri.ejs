@@ -847,9 +847,9 @@
 					<button type="button" v-on:click="facebookLogin" class="button order-button" style="width:100%; background-color:#3b5998; border-color:#3b5998;" title="Order"><i class="xi-facebook-official xi-x" style="padding-right:3px; "></i>페이스북 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
 				</div>
 				<div class="col-md-12 order-button-block">
-					<button type="button"  class="button order-button" style="width:100%; background-color:#1EC800; border-color:#1EC800;" title="Order"><i class="xi-naver-square xi-x" style="padding-right:3px; "></i>네이버 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
+					<button type="button" v-on:click="naverLogin" class="button order-button" style="width:100%; background-color:#1EC800; border-color:#1EC800;" title="Order"><i class="xi-naver-square xi-x" style="padding-right:3px; "></i>네이버 로그인<div class="ld ld-ring ld-spin-fast"></div></button>
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-12" style="display:none">
 					<div id="naver_id_login"></div>
 				</div>
 				<div class="col-md-12">
@@ -974,13 +974,22 @@
     projectId: "airpuri-1c6b7"
   };
   firebase.initializeApp(config);
-	var naver_id_login = new naver_id_login("V6wZ56EY5aj3huwFWJCw",	"http://www.lottofreenum.com/temp/auth");
-	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 2,40);
-  	naver_id_login.setDomain("http://www.lottofreenum.com");
-  	naver_id_login.setState(state);
-  	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
+  var naver_id_login = new naver_id_login("V6wZ56EY5aj3huwFWJCw",	"http://www.lottofreenum.com/temp/auth");
+  var state = naver_id_login.getUniqState();
+	 	naver_id_login.setButton("white", 2,40);
+	 	naver_id_login.setDomain("http://www.lottofreenum.com");
+	 	naver_id_login.setState(state);
+	 	naver_id_login.setPopup();
+	 	naver_id_login.init_naver_id_login();
+	 	function naverIdLoginCallback(result){
+	 		if(result=='success'){
+	 			$.magnificPopup.close();
+	 		} else if(result=='duplicate'){
+	 			alert('이미 다른 서비스로 이용중인 이메일 입니다.');
+	 		} else{
+	 			alert('로그인에 실패 했습니다. 다시 시도해 주세요.');
+	 		}
+	 	}
 </script>
 <!-- vue.js 부분 -->
 <script type="text/javascript">
@@ -1065,7 +1074,7 @@ new Vue({
 		      });
 		},
 		naverLogin:function(){
-				
+			$("#naver_id_login").find('a').click();
 		},
 		logout:function(){
 			this.user = null;
@@ -1216,10 +1225,10 @@ new Vue({
 });
 
 </script>
-<!--[if lte IE 9]>
-<script src="assets/js/placeholders.js"></script>
-<script src="assets/js/init-for-ie.js"></script>
-<![endif]-->
+<!-- 
+<script src="/assets/js/placeholders.js"></script>
+<script src="/assets/js/init-for-ie.js"></script>
+ -->
 
 </body>
 </html>

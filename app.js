@@ -24,6 +24,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/*', function(req, res, next) {
+	  if (req.headers.host.match(/^www/) === null ) {
+	    res.redirect('http://www.' +req.headers.host + req.url);
+	  } else {
+	    next();     
+	  }
+})
+
 app.use('/temp' , temp);
 app.use('/contact' , contact);
 
@@ -85,6 +93,7 @@ schedule.scheduleJob(rule, function(){
 			});
 	});
 });
+
 
 
 // error handler

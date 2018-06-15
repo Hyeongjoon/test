@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html>
  <head>
+ <!-- firebase script -->
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
   <script src="/assets/js/jquery.min.js"></script>
  </head>
  <body>
-  <div id="naver_id_login" style="height:0px;"></div>
+  <div id="naver_id_login" style="display:none;"></div>
+  <p>인증 처리 중입니다. 잠시만 기다려 주세요.</p>
   <script type="text/javascript">
+  console.log(opener);
+  var config = {
+		    apiKey: "AIzaSyALyWz06WQtK1rn3rGsTHHbiFmv9hAJTHM",
+		    authDomain: "airpuri-1c6b7.firebaseapp.com",
+		    projectId: "airpuri-1c6b7"
+		  };
+  firebase.initializeApp(config);
    // 네이버아이디로그인 시작
    var naver_id_login = new naver_id_login("V6wZ56EY5aj3huwFWJCw", "http://www.lottofreenum.com/temp/auth");
    naver_id_login.init_naver_id_login();  // 로그인 시작
-
    // 네이버 사용자정보 가져오기
    function callback(){
     var paramBody = {id : naver_id_login.getProfileData('id') // 네이버ID
-                    ,nickname : naver_id_login.getProfileData('nickname') // 네이버에서 설정한 별명
                     ,email : naver_id_login.getProfileData('email') // 이메일주소(xxxx@naver.com)
-                    ,gender : naver_id_login.getProfileData('gender') // 성별(남자 : M, 여자 : F)
-                    ,age : naver_id_login.getProfileData('age') // 나이(20-29 같이 연령대로 전달받음)
-                    ,birthday : naver_id_login.getProfileData('birthday') // 생일(0815 출생년도 없이 월일만 전달받음)
-                    ,profileImage : naver_id_login.getProfileData('profileImage') // 프로필이미지 경로
                     };
-    alert(paramBody);
-    opener.naverIdLoginCallback(paramBody); // 팝업을 호출한 모창에 있는 naverIdLoginCallback function에 사용자 프로필 전달
-    var win = window.open("", "_self");
-    win.close();
+    $.post("/temp/naver_login" ,paramBody ,function(result){
+		if(result['result']=='duplicate'){
+			opener.naverIdLoginCallback('duplicate');
+			var win = window.open("", "_self");
+		    win.close();
+		}else {
+			firebase.auth().signInWithCustomToken(result['token']).catch(function(error) {
+				opener.naverIdLoginCallback('wrong')
+				var win = window.open("", "_self");
+			    win.close();
+			}).then(function(){
+				opener.naverIdLoginCallback('success')
+				var win = window.open("", "_self");
+			    win.close();
+			});
+		}
+	}).fail(function(message){
+		opener.naverIdLoginCallback('wrong');
+		var win = window.open("", "_self");
+	    win.close();
+	});
    }
   </script>
   <script>
    $(document).ready(function(){
-     naver_id_login.get_naver_userprofile("callback()"); // 네이버아이디로그인 결과를 네이버에서 전달받은 경우
+	   if(naver_id_login.is_callback == true){  
+     	naver_id_login.get_naver_userprofile("callback()"); // 네이버아이디로그인 결과를 네이버에서 전달받은 경우
+	   } else{
+		   opener.naverIdLoginCancle('wrong');
+	   }
    });
   </script>
  </body>

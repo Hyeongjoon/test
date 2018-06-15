@@ -51,6 +51,23 @@ router.get('/auth', function(req,res,next){
 	res.render('naverLoginRedirect', {});
 })
 
+router.post('/naver_login', function(req, res, next){
+	const userId=`naver:${req.body.id}`;
+	return naverUpdateOrCreateUser(userId,req.body['email']).then((userRecord)=>{
+		if(userRecord == 'email-already-exists'){
+    		res.json({result:'duplicate'})
+    	} else{
+    		admin.auth().createCustomToken(userRecord.uid, {provider: 'NAVER'}).then(function(token){
+    			res.json({result:'success' , token : token});
+    		}).catch(function(error){
+    			res.status(500).json({message: '내부 서버 오류입니다.'});
+    		});
+    	}
+	}).catch(function(err){
+		res.status(500).json({message: '내부 서버 오류입니다.'});
+	});
+});
+
 router.post('/kakao_login' , function(req, res, next){
 	requestMyInfo(req.body.access_token).then((response) => {
 		    const body = JSON.parse(response)
@@ -77,6 +94,32 @@ router.post('/kakao_login' , function(req, res, next){
 		    	}
 		    })
 });
+//네이버 아이디로 firebase 등록하기
+function naverUpdateOrCreateUser(userId, email) {
+	  var updateParams = {
+	    provider: 'NAVER',
+	    displayName: email.substring(0,email.lastIndexOf('@'))
+	  };
+	  return admin.auth().updateUser(userId, updateParams)
+	  .catch((error) => {
+	    if (error.code === 'auth/user-not-found') {
+	      updateParams['uid'] = userId;
+	      if (email) {
+	        updateParams['email'] = email;
+	      }
+	      console.log(updateParams);
+	      return admin.auth().createUser(updateParams).catch((error)=>{
+	    	  console.log(error);
+	    	  if(error.code==='auth/email-already-exists'){
+	    		  return 'email-already-exists';
+	    	  }
+	    	  throw error;
+	      });
+	    }
+	    throw error;
+	  });
+	};
+
 
 //카카오 서버에 내 정보 요청하기
 function requestMyInfo(kakaoToken) {
@@ -87,7 +130,7 @@ function requestMyInfo(kakaoToken) {
 	  });
 	};
 	function updateOrCreateUser(userId, email, displayName, photoURL) {
-		  const updateParams = {
+		  var updateParams = {
 		    provider: 'KAKAO',
 		    displayName: displayName,
 		    emailVerified: true
