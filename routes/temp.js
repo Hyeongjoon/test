@@ -2,10 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 var admin = require("firebase-admin");
+var orderDAO = require('../model/airpuriDAO')
+
+var async= require('async');
 
 const request = require('request-promise');
 
 const requestMeUrl = 'https://kapi.kakao.com/v1/user/me?secure_resource=true';
+
+var Iamport = require('iamport');
+
+var iamport = new Iamport({
+	impKey: '6683913542960635',
+	impSecret: 'YTlqLzbpcZN6b6CAmAbrdzXwTt4cSsjRlEh6dtwpsjwEq9eNKpeYZbvTFA5y2opn2Huga0GDkdhKmvx7'});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -42,6 +51,10 @@ router.post('/sign-up' , function(req, res, next){
 router.get('/use' , function(req, res, next){
 	res.render('use', {});
 });
+
+router.get('/buy' , function(req, res, next){
+	res.render('buy', {});
+})
 
 router.get('/individual' , function(req, res, next){
 	res.render('individual', {});
@@ -121,6 +134,7 @@ function naverUpdateOrCreateUser(userId, email) {
 	};
 
 
+
 //카카오 서버에 내 정보 요청하기
 function requestMyInfo(kakaoToken) {
 	  return request({
@@ -160,6 +174,72 @@ function requestMyInfo(kakaoToken) {
 		    throw error;
 		  });
 		};
-	
+		
+router.get('/pay-success', function(req, res, next){
+	if(req.query['imp_success']=='false'){
+		res.redirect('/temp/fail');
+	} else{
+		iamport.payment.getByImpUid({
+			  imp_uid: req.query['imp_uid']  
+			}).then(function(result){
+				if((result['status']=='paid')&&(result['amount']==req.query['amount'])){
+					//결제 된 상태일 경우
+					async.waterfall([function(callback){
+						var custom_data = JSON.parse(result['custom_data']);
+						var inform = {
+								uid:'',
+								imp_uid:req.query['imp_uid'],
+								merchant_uid:result['merchant_uid'],
+								anony_pw:custom_data['pw']
+						}
+						if(custom_data['token']==''){
+							orderDAO.insertOrder(inform , callback);
+						} else{
+							admin.auth().verifyIdToken(custom_data['token']).then(function(decodedToken){
+								inform['uid']=decodedToken.uid;
+								orderDAO.insertOrder(inform , callback);
+							})
+						}
+					}] , function(err, results){
+						if(err){
+							//원래는 취소 날려야함
+							res.redirect('/temp/fail');
+						} else{
+							res.redirect('/temp/success');
+						}
+					});
+				} else {
+					//결제상태가 아닐 경우
+					res.redirect('/order/fail');
+				}
+			});
+	}
+});
+
+router.post('/check_pay' , function(req, res, next){
+	iamport.payment.getByImpUid({
+		  imp_uid: req.body['imp_uid']  
+		}).then(function(result){
+			if((result['status']=='paid')&&(result['amount']==result['custom_data']['car_price'])){
+				
+			} else if(result['cancelled']){
+				//취소했을때 코드시켜놓을 것
+			} 
+		}).catch(function(error){
+		  // handle error
+		});
+});
+		
+router.get('/fail',function(req,res,next){
+	res.render('order-fail',{});
+});
+
+router.get('/cancle',function(req,res,next){
+	res.render('order-cancle',{});
+});
+
+router.get('/success', function(req, res, next){
+	res.render('order-success' , {});
+});
 	
 module.exports = router;
