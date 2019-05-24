@@ -12,10 +12,15 @@ router.get('/', function(req, res, next){
 })
 
 router.post('/', function(req, res, next){
+	var text = req.body.text
 	console.log(req.body)
-	/*spellcheck(dict, text, function(err, typos) {
-		
-	})*/
+	spellcheck(dict, text, function(err, typos) {
+		if(err){
+			res.status(500).json()
+		} else{
+			res.json(typos)
+		}
+	})
 })
 
 module.exports = router;
