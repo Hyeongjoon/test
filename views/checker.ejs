@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<title>오탈자 체크기</title>
+
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+	</head>
+
+<body>
+	문장입력
+	<input type="text" id="text" >
+	<button id="send">체크하기</button>
+	<p id="result">
+</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+		$("#send").on('click', function(){
+			if($("#text").val().trim()==''){
+				alert("단어를 입력 해 주세요")
+			} else{
+				 $.ajax({
+		                url: '/checker',
+		                processData: false,
+		                contentType: false,
+		                data: {text:$("#text").val()},
+		                type: 'POST',
+		                success: function(result){
+		         			$("#result").text(result)          
+		                },
+		                error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다. 
+							alert("내부 오류입니다.")
+		                },
+		            });
+			}
+		})
+	</script>
+</html>

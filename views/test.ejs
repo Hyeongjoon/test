@@ -1,0 +1,99 @@
+<html>
+  <head>
+  <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  </head>
+  <body>
+    <h1>Loop it!</h1>
+    <canvas id="canvas" width="1000" height="1000" style="border:1px solid black"></canvas>
+    <button id="head">머리 완료</button>
+    <button id="body">몸통 완료</button>
+    <button id="down">다운로드</button>
+    <button id="test">테스트</button>
+  </body>
+  <script src="/javascripts/fabric.2.4.6.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@2.5.0/dist/pptxgen.bundle.js"></script>
+  <script>
+      $("#test").on('click', function(){
+        var pptx = new PptxGenJS();
+        var slide = pptx.addNewSlide();
+        slide.addImage({
+            path:'/images/asdqwe.svg',
+            x:1, y:1, w:3.0, h:3.0
+        });
+        pptx.save('PptxGenJS-SVG');
+      })
+        var canvas = new fabric.Canvas('canvas',{
+            isDrawingMode: true
+        })
+        canvas.freeDrawingBrush.width = 20
+        // create a rectangle object
+        $("#head").on('click', function(){
+            canvas.isDrawingMode= false
+            var tempArr = canvas.getObjects()
+            var result = []
+            for(var i = 0 ; i < tempArr.length; i++){
+                if(tempArr[i].type!="group")
+                    result.push(tempArr[i]) 
+            }
+            var sel = new fabric.ActiveSelection(result, {
+                canvas: canvas,
+            })
+            canvas.setActiveObject(sel)
+            canvas.getActiveObject().toGroup()
+            canvas.renderAll()
+            canvas.isDrawingMode= true
+        })
+        $("#body").on('click', function(){
+            canvas.isDrawingMode= false
+            var tempArr = canvas.getObjects()
+            var result = []
+            for(var i = 0 ; i < tempArr.length; i++){
+                if(tempArr[i].type!="group")
+                    result.push(tempArr[i]) 
+            }
+            var sel = new fabric.ActiveSelection(result, {
+                canvas: canvas,
+            })
+            canvas.setActiveObject(sel)
+            canvas.getActiveObject().toGroup()
+            canvas.renderAll()
+            canvas.isDrawingMode= false
+        })
+        $("#down").on('click', function(){
+            var tempArr = canvas.getObjects()
+            for(var i = 0;  i < tempArr.length; i++){
+            var temp = tempArr[i];
+            var temp_canvas = new fabric.Canvas();
+            temp_canvas.width = temp.get('width')*temp.get('scaleX')
+            temp_canvas.height = temp.get('height')*temp.get('scaleY')
+            var tempTop = temp.get('top')
+            var tempLeft  = temp.get('left')
+            temp.set({top:0,left:0})
+            temp_canvas.add(temp)
+            var imgData = temp_canvas.toDataURL({ format: "png", multiplier: 0.5, left: 0, right: 0, width: temp_canvas.width, height: temp_canvas.height });
+            var link = document.createElement("a");
+
+            var strDataURI = imgData.substr(22, imgData.length);
+            var blob = dataURLtoBlob(imgData);
+            var objurl = URL.createObjectURL(blob);
+
+            link.download = "helloWorld.png";
+
+            link.href = objurl;
+
+            link.click();
+            temp.set({top:tempTop,left:tempLeft})
+            }
+        })
+        function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+        }
+  </script>
+</html>

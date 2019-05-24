@@ -8,7 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var temp = require('./routes/temp');
+var test = require('./routes/test');
 var contact = require('./routes/contact');
+var checker = require('./routes/checker')
 
 var app = express();
 
@@ -34,9 +36,11 @@ app.get('/*', function(req, res, next) {
 
 app.use('/temp' , temp);
 app.use('/contact' , contact);
+app.use('/test', test)
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/checker',checker);
 
 //firebase initialize
 var admin = require("firebase-admin");
