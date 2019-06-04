@@ -11,6 +11,8 @@ var temp = require('./routes/temp');
 var test = require('./routes/test');
 var contact = require('./routes/contact');
 var checker = require('./routes/checker')
+var score = require('./routes/score');
+var check_words = require('./routes/check_words')
 
 var app = express();
 
@@ -26,13 +28,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/*', function(req, res, next) {
-	  if (req.headers.host.match(/^www/) === null ) {
-	    res.redirect('http://www.' +req.headers.host + req.url);
-	  } else {
-	    next();     
-	  }
-})
 
 app.use('/temp' , temp);
 app.use('/contact' , contact);
@@ -41,6 +36,8 @@ app.use('/test', test)
 app.use('/', index);
 app.use('/users', users);
 app.use('/checker',checker);
+app.use('/calScore',score);
+app.use('/check_words',check_words);
 
 //firebase initialize
 var admin = require("firebase-admin");
