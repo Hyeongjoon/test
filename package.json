@@ -12,7 +12,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
-    "express": "^4.17.0",
+    "express": "^4.17.3",
     "firebase-admin": "^8.0.0",
     "formidable": "^1.2.1",
     "iamport": "^0.3.4",
